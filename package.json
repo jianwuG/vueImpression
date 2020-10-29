@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "purgecss-webpack-plugin": "^3.0.0"
+  }
+}
