@@ -18,16 +18,16 @@ module.exports = {
             title: 'Index Page',// 当使用 title 选项时,在 template 中使用：<title><%= htmlWebpackPlugin.options.title %></title>
             chunks: ['chunk-vendors', 'chunk-common', 'index'] // 在这个页面中包含的块，默认情况下会包含,提取出来的通用 chunk 和 vendor chunk
         },
-        subpage: 'src/subpage/main.js'//官方解释：当使用只有入口的字符串格式时,模板会被推导为'public/subpage.html',若找不到就回退到'public/index.html',输出文件名会被推导为'subpage.html'
+        // subpage: 'src/subpage/main.js'//官方解释：当使用只有入口的字符串格式时,模板会被推导为'public/subpage.html',若找不到就回退到'public/index.html',输出文件名会被推导为'subpage.html'
     },
-    lintOnSave: true,// 是否在保存的时候检查
+    lintOnSave: process.env.NODE_ENV !== 'production',// 是否在保存的时候检查
     productionSourceMap: !IS_PROD,// 生产环境是否生成 sourceMap 文件
 
     css: {
         extract: IS_PROD,// 是否使用css分离插件 ExtractTextPlugin
         sourceMap: false,// 开启 CSS source maps
         loaderOptions: {},// css预设器配置项
-        modules: false// 启用 CSS modules for all css / pre-processor files.
+        requireModuleExtension: false// 启用 CSS modules for all css / pre-processor files.
     },
     //去除多余的css
 
