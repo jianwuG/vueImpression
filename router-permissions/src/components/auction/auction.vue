@@ -1,5 +1,7 @@
 <template>
-    <text>auctionVue</text>
+    <div>
+      商品111111111111111
+    </div>
 </template>
 
 <script>

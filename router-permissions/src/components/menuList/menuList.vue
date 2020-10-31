@@ -1,12 +1,14 @@
 <template>
 
-    <text>404</text>
+   <div>
+       11111111
+   </div>
 
 </template>
 
 <script>
     export default {
-        name: "404"
+        name: "menuList"
     }
 </script>
 

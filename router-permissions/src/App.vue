@@ -1,11 +1,13 @@
 <template >
   <div id="app">
     <div class="center">
-
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <router-view />
+      <router-link to="/home">Home</router-link> |
+      <router-link to="/menuList">Menu</router-link>
     </div>
+    <div class="view">
+      <router-view></router-view>
+    </div>
+
   </div>
 </template>
 <script>
@@ -20,9 +22,17 @@
   height: 100vh;
 }
   .center{
-    width: 300px;
-    height: 200px;
+    width: 600px;
+    height: 50vh;
     border:1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .view{
+    width:600px;
+    height: 50vh;
+    background-color:pink;
     display: flex;
     justify-content: center;
     align-items: center;

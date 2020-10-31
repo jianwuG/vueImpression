@@ -1,12 +1,12 @@
 <template>
-    <div>
-        2222222222222
-    </div>
+     <div>
+         你当前没有全选访问该路径
+     </div>
 </template>
 
 <script>
     export default {
-        name: "user"
+        name: "404"
     }
 </script>
 
