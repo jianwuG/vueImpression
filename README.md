@@ -6,6 +6,6 @@
 * vue-ui-test           
    * 通过vue-ui搭建项目
 * router-permissions    
-  * 路由权限 
+  * 路由权限(beforeEach+router.js+vuex配置) 
  
 

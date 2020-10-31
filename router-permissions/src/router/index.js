@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from "vue-router";
+import store from "../store/store";
 Vue.use(VueRouter);
 const routes=[
     {
@@ -56,7 +57,7 @@ const routes=[
         meta: {
             title: '登录',
             icon: 'login',
-            roles: ['admin' ,'user'] // 在需要登录的路由的meta中添加响应的权限标识
+            // roles: ['admin' ,'user'] // 在需要登录的路由的meta中添加响应的权限标识
         }
     },
     {
@@ -80,15 +81,28 @@ const router=new VueRouter({routes});
 
 //假设有两种角色：admin 和 user
 //从后台获取的用户角色
-const role = 'user'
 //当进入一个页面是会触发导航守卫 router.beforeEach 事件
 router.beforeEach((to,from,next)=>{
-   if(to.meta.roles&&to.meta.roles.includes(role)){
-     next();
-   }
-   else{
-        next({path:"/404"});
-   }
+    if(!store.state.role){
+        if(store.state.token){
+            store.dispatch('login',{"userInfo":{name:'普通用户',age:'12'},"token":'ssssswewew',"role":'user'});
+            next();
+        }
+        else{
+          // window.alert('请登录');
+          next();
+        }
+        // next({name:'login'})
+    }
+    else{
+        if(to.meta.roles&&to.meta.roles.includes(store.state.role)){
+            next();
+        }
+        else{
+            next({path:"/404"});
+        }
+    }
+
 })
 
 
