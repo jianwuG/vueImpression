@@ -9,15 +9,17 @@
              <button class="clear-role" @click="clearRole" v-if="role&&token">登出角色</button>
              <button class="toLogin" @click="goLogin" >去登陆/更换角色</button>
          </div>
-             <router-link to="/order">订单</router-link> |
-             <router-link to="/user">用户</router-link> |
-             <router-link to="/auction">商品</router-link>|
-             <router-link to="/login">登录</router-link>
+
+         <template v-for="(menu,index) of menuList">
+             <router-link :to="menu.path" :key="index">{{menu.name}}</router-link> |
+         </template>
+
      </div>
 </template>
 
 <script>
-    import {mapState,mapActions} from 'vuex'
+    import {mapState,mapActions} from 'vuex';
+    import router from "../../router/indexByAdd";
     export default {
         name: "home",
         data:function(){
@@ -25,8 +27,14 @@
             }
         },
         computed:{
+            menuList(){
+              return   router.options.routes
+            },
             ...mapState(['role','token'])
 
+        },
+        mounted() {
+            console.log('ssssssssssssssss',router);
         },
         methods:{
             clearRole(){

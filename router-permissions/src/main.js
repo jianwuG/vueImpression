@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
+// import router from './router/index';
+//全局守卫beforeEach+meta
+import router from './router/indexByAdd';
 import store from "./store/store";
 Vue.config.productionTip = false
 

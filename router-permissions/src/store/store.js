@@ -8,7 +8,7 @@ export default new Vuex.Store({
         token:localStorage.getItem('token'),
         role:'',
         userInfo:{},
-
+        addRouters:[],//根据角色权限获取到的附加路由
     },
     getter:{
 
@@ -28,6 +28,10 @@ export default new Vuex.Store({
         },
         clearToken(ctx,token){
             ctx.commit('setToken',token);
+        },
+        getUserRouter(ctx,role){
+            ctx.commit('getUserRouter',role);
+
         }
 
     },
@@ -43,7 +47,40 @@ export default new Vuex.Store({
         },
         setRole(state,role){
             state.role=role;
-        }
+        },
+        // getUserRouter(state,role){
+        //     let list=[];
+        //     if(role==='user'){
+        //         list=[]
+        //     }
+        //     else{
+        //         list=[{
+        //             "path": "'/order'",
+        //             component: () => import('../components/order/order.vue'),
+        //             name:"Order",
+        //             meta: {
+        //                 title: 'order',
+        //                 icon: 'order',
+        //                 roles: ['admin'] // 在需要登录的路由的meta中添加响应的权限标识
+        //
+        //             }
+        //         },
+        //             {
+        //                 path: '/user',
+        //                 component: () => import('../components/user/user.vue'),
+        //                 name:"user",
+        //                 meta: {
+        //                     title: '个人中心',
+        //                     icon: 'user',
+        //                     roles: ['admin'] // 在需要登录的路由的meta中添加响应的权限标识
+        //                 }
+        //             },
+        //         ];
+        //     }
+        //     state.addRouters=[...list];
+        //     console.log('111111111111111',role,[...state.addRouters]);
+        //
+        // }
 
     },
 })
