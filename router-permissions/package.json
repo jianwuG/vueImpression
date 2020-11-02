@@ -22,7 +22,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "glob-all": "^3.2.1",
     "purgecss-webpack-plugin": "^3.0.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "eslintConfig": {
     "root": true,

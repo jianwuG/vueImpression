@@ -2,8 +2,17 @@ const path = require("path");
 
 
 module.exports = {
+    publicPath: './',
     lintOnSave: false,// 是否在保存的时候检查
+    configureWebpack: {
+        resolve: {
+            //配置路径别名
+            alias: {
+                'src': '@/src',
 
+            }
+        }
+    },
     devServer: {
         overlay: { // 让浏览器 overlay 同时显示警告和错误
             warnings: true,

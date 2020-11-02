@@ -7,7 +7,7 @@ import store from "../store/store";
 Vue.use(VueRouter);
 
 //配置公共的组件
-let routes = [
+export const routes = [
     {
         path: '/',
         redirect:{
@@ -55,53 +55,18 @@ let routes = [
     }
 ];
 
-    const adminRouters=[
-        {
-            path: '/orderList',
-            component: () => import('../components/order/order.vue'),
-            name:"订单",
-            meta: {
-                title: '订单',
-                icon: 'order',
-                roles: ['admin'] // 在需要登录的路由的meta中添加响应的权限标识
 
-            }
-        },
-        {
-            path: '/userList',
-            component: () => import('../components/user/user.vue'),
-            name:"个人中心",
-            meta: {
-                title: '个人中心',
-                icon: 'user',
-                roles: ['admin'] // 在需要登录的路由的meta中添加响应的权限标识
-            }
-        },
-    ];
+const createRouter = () =>
+    new VueRouter({
+        routes:routes
+    });
 
-const router = new VueRouter({routes});
+const router = createRouter();
 
-
-
-router.beforeEach((to, form, next) => {
-        if (!store.state.role) {
-            next();
-        } else {
-            router.matcher = new VueRouter({
-                routes
-            }).matcher;
-            router.addRoutes([...adminRouters]);
-            //  if(store.state.role==='admin'){
-            //      // router.$addRoutes([...adminRouters])
-                 next({...to,replace:true})
-            //      // console.log('11111111sssssssssss1111',router.options.routes)
-            // }
-            // else{
-            //     next()
-            // }
-        }
-    }
-);
-
+export function resetRouter() {
+    const newRouter = createRouter();
+    console.log('bbbbbbbbbbbbbbb',newRouter);
+    router.matcher = newRouter.matcher; // reset router
+}
 
 export default router;

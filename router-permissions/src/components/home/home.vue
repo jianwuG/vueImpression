@@ -10,9 +10,14 @@
              <button class="toLogin" @click="goLogin" >去登陆/更换角色</button>
          </div>
 
-         <template v-for="(menu,index) of menuList">
-             <router-link :to="menu.path" :key="index">{{menu.name}}</router-link> |
-         </template>
+<!--         <template v-for="(menu,index) of menuList">-->
+<!--             <router-link :to="menu.path" :key="index">{{menu.name}}</router-link> |-->
+<!--         </template>-->
+
+            <template v-for="(menu,index) of routerList" >
+                <router-link :to="menu.path" :key="index">{{menu.name}}</router-link> |
+            </template>
+
 
      </div>
 </template>
@@ -20,6 +25,7 @@
 <script>
     import {mapState,mapActions} from 'vuex';
     import router from "../../router/indexByAdd";
+
     export default {
         name: "home",
         data:function(){
@@ -30,20 +36,26 @@
             menuList(){
               return   router.options.routes
             },
-            ...mapState(['role','token'])
+
+            ...mapState(['role','token','routerList'])
 
         },
         mounted() {
-            console.log('ssssssssssssssss',router);
         },
         methods:{
             clearRole(){
-               this.clearToken('')
+                this.setInitRouter(false);
+                this.clearRouterList([]);
+                this.clearToken('');
+
             },
             goLogin(){
-                this.$router.push('/login');
+                this.clearToken('')
+                this.setInitRouter(false)
+                this.$router.push('/login')
+
             },
-            ...mapActions(['clearToken'])
+            ...mapActions(['clearToken','setInitRouter','clearRouterList'])
         }
 
     }

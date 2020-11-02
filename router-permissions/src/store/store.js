@@ -1,14 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { routes } from './../router/indexByAdd'
+import createPersistedState from "vuex-persistedstate"
+
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+    plugins: [createPersistedState()],
     state:{
         token:localStorage.getItem('token'),
         role:'',
         userInfo:{},
-        addRouters:[],//根据角色权限获取到的附加路由
+        initRouter:false,//是否已获取到动态路由
+        routerList: [] // 动态路由
     },
     getter:{
 
@@ -32,15 +37,24 @@ export default new Vuex.Store({
         getUserRouter(ctx,role){
             ctx.commit('getUserRouter',role);
 
-        }
+        },
+        // 动态设置路由 此为设置设置途径
+        setRouterList({ commit }, routerList) {
+            commit('setRouter', routes.concat([...routerList])) // 进行路由拼接并存储
+        },
+        clearRouterList({ commit},list){
+            commit('clearRouter',[...list]) // 进行路由拼接并存储
+        },
+
+        setInitRouter({ commit }, status) {
+            commit('setInitRouter', status)
+        },
 
     },
     mutations:{
         setToken(state,token){
             state.token=token;
             localStorage.setItem('token',token);
-            console.log('22222222222222',state.token,token
-            );
         },
         setUserInfo(state,userInfo){
             state.userInfo={...userInfo};
@@ -48,39 +62,16 @@ export default new Vuex.Store({
         setRole(state,role){
             state.role=role;
         },
-        // getUserRouter(state,role){
-        //     let list=[];
-        //     if(role==='user'){
-        //         list=[]
-        //     }
-        //     else{
-        //         list=[{
-        //             "path": "'/order'",
-        //             component: () => import('../components/order/order.vue'),
-        //             name:"Order",
-        //             meta: {
-        //                 title: 'order',
-        //                 icon: 'order',
-        //                 roles: ['admin'] // 在需要登录的路由的meta中添加响应的权限标识
-        //
-        //             }
-        //         },
-        //             {
-        //                 path: '/user',
-        //                 component: () => import('../components/user/user.vue'),
-        //                 name:"user",
-        //                 meta: {
-        //                     title: '个人中心',
-        //                     icon: 'user',
-        //                     roles: ['admin'] // 在需要登录的路由的meta中添加响应的权限标识
-        //                 }
-        //             },
-        //         ];
-        //     }
-        //     state.addRouters=[...list];
-        //     console.log('111111111111111',role,[...state.addRouters]);
-        //
-        // }
+        setInitRouter(state,status){
+            state.initRouter=status;
+        },
+        setRouter: (state, routerList) => {
+            state.routerList = [...routerList]
+        },
+        clearRouter:(state,list)=>{
+            state.routerList = [...list]
+
+        }
 
     },
 })

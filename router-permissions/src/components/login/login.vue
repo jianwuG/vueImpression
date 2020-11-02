@@ -18,12 +18,12 @@
         },
         methods:{
             setUserInfo(){
-                this.login({"userInfo":{name:'普通用户',age:'12'},"token":'ssssswewew',"role":'user'});
+                this.login({"userInfo":{name:'普通用户',age:'12'},"token":'userInfo111111111111111111',"role":'user'});
                 this.$router.push('/home');
 
             },
             setAdminInfo(){
-                this.login({userInfo:{name:'管理员',age:'12'},token:'szzz',"role":'admin'});
+                this.login({userInfo:{name:'管理员',age:'12'},token:'22222222222222 adminToken111111111111111111111111111',"role":'admin'});
                 this.$router.push('/home');
 
             },
