@@ -8,21 +8,28 @@ const routes=[
     {
         path:'/home',
         name:'Home',
-        component:()=>import('./../components/home/home.vue')
+        component:()=>import('./../components/home/home.vue'),
+        meta:{
+            title:'首页'
+        }
     },
     {
         path:'/search',
         name:'Search',
         component:()=>import('./../components/search/search.vue'),
         meta:{
-            keepAlive:true
+            title:'列表',
+            keepAlive:true,
         }
 
     },
     {
         path:'/detail',
         name:'Detail',
-        component:()=>import('./../components/detail/detail.vue')
+        component:()=>import('./../components/detail/detail.vue'),
+        meta:{
+            title:'详情',
+        }
     },
 ];
 

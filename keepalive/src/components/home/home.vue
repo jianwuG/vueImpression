@@ -1,5 +1,6 @@
 <template>
-   <div>
+   <div class="home-div">
+       <div class="home-page">主页</div>
        <button @click="goSearch"> goSerach</button>
    </div>
 </template>
@@ -18,6 +19,20 @@ export default {
 </script>
 
 <style scoped>
+    .home-div{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .home-page{
+        font-size: 48px;
+
+    }
+    button{
+        margin-top: 200px;
+    }
 h3 {
   margin: 40px 0 0;
 }

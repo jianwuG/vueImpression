@@ -1,9 +1,7 @@
 <template>
     <div>
         <div v-for="(item,index) in detailInfo.url">
-            <van-image :src="item">
-                <template v-slot:error>加载失败</template>
-            </van-image>
+            <img :src="item">
         </div>
         <div class="detail-text">
             {{detailInfo.text}}
@@ -30,7 +28,7 @@
             async getDetail() {
                 let body = await Http.get('/getDetail/')
                 if (body.status === 200) {
-                    console.log('111111111111', body);
+                    console.log('sssssssss111111111111', body);
                     this.detailInfo = {...body.data} || {};
                     console.log('22222222222', this.detailInfo.url);
                 }
@@ -43,4 +41,7 @@
  .detail-text{
      padding: 20px;
  }
+    img{
+        width: 300px;
+    }
 </style>

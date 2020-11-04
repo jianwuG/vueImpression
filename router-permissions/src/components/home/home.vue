@@ -14,7 +14,7 @@
 <!--             <router-link :to="menu.path" :key="index">{{menu.name}}</router-link> |-->
 <!--         </template>-->
 
-            <template v-for="(menu,index) of routerList" >
+            <template v-for="(menu,index) in routerList" >
                 <router-link :to="menu.path" :key="index">{{menu.name}}</router-link> |
             </template>
 
